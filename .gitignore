@@ -1,0 +1,12 @@
+# Compilación
+**/target/
+**.class
+
+# IDEs
+**.idea/
+**.vscode/
+*.iml
+*.log
+
+# Configuración local
+**.env
