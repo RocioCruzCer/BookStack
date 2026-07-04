@@ -8,8 +8,14 @@ spring:
     gateway:
       discovery:
         locator:
-          enabled: true # Activa el enrutamiento dinámico automático con Eureka
-          lower-case-service-id: true # Permite usar nombres en minúsculas para las rutas
+          enabled: true
+          lower-case-service-id: true
+      # Agregamos este bloque para mapear la ruta limpia personalizada
+      routes:
+        - id: user-service-route
+          uri: lb://user-service
+          predicates:
+            - Path=/api/v1/**
 
 eureka:
   client:
