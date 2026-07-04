@@ -12,7 +12,7 @@ El sistema está compuesto por la siguiente infraestructura base y microservicio
 * **Catalog Service (`catalog-service`):** Microservicio encargado del catálogo de libros, autores y categorías. (Base de datos: MongoDB).
 * **Loan Service (`loan-service`):** Microservicio encargado de la gestión de préstamos, devoluciones y multas. (Base de datos: PostgreSQL).
 
-## 🛠️ Stack Tecnológico
+## Stack Tecnológico
 
 * **Lenguaje:** Java 21
 * **Framework:** Spring Boot 3.3.x
@@ -20,7 +20,7 @@ El sistema está compuesto por la siguiente infraestructura base y microservicio
 * **Gestor de Dependencias:** Maven
 * **Bases de Datos:** PostgreSQL (Relacional) y MongoDB (NoSQL)
 
-## 📂 Estructura del Monorepo
+## Estructura del Monorepo
 
 ```text
 BookStack/
