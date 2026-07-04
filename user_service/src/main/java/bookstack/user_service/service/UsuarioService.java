@@ -46,4 +46,47 @@ public class UsuarioService {
         }
         throw new RuntimeException("Credenciales incorrectas o usuario no encontrado");
     }
+
+    // Obtener todos los usuarios (Para que el Admin los vea en una tabla)
+    public java.util.List<Usuario> obtenerTodos() {
+        return usuarioRepository.findAll();
+    }
+
+    // Obtener un usuario por su ID
+    public Usuario obtenerPorId(Long id) {
+        return usuarioRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Usuario no encontrado con el ID: " + id));
+    }
+
+    // Eliminar un usuario
+    public void eliminarUsuario(Long id) {
+        if (!usuarioRepository.existsById(id)) {
+            throw new RuntimeException("No se puede eliminar. Usuario no encontrado con el ID: " + id);
+        }
+        usuarioRepository.deleteById(id);
+    }
+
+    // Actualizar un usuario existente
+    public Usuario actualizarUsuario(Long id, Usuario datosActualizados) {
+        Usuario usuarioExistente = obtenerPorId(id);
+
+        usuarioExistente.setNombre(datosActualizados.getNombre());
+        usuarioExistente.setUsername(datosActualizados.getUsername());
+
+        // Si el admin mandó una contraseña nueva, la encriptamos antes de guardarla
+        if (datosActualizados.getPassword() != null && !datosActualizados.getPassword().isBlank()) {
+            usuarioExistente.setPassword(passwordEncoder.encode(datosActualizados.getPassword()));
+        }
+
+        // Formatear el rol si cambió
+        if (datosActualizados.getRol() != null) {
+            String nuevoRol = datosActualizados.getRol();
+            if (!nuevoRol.startsWith("ROLE_")) {
+                nuevoRol = "ROLE_" + nuevoRol.toUpperCase();
+            }
+            usuarioExistente.setRol(nuevoRol);
+        }
+
+        return usuarioRepository.save(usuarioExistente);
+    }
 }

@@ -36,4 +36,46 @@ public class AuthController {
             return ResponseEntity.badRequest().body(Map.of("error", e.getMessage()));
         }
     }
+
+    // Endpoint para listar todos los usuarios
+    @GetMapping("/users")
+    public ResponseEntity<?> listarTodos() {
+        try {
+            return ResponseEntity.ok(usuarioService.obtenerTodos());
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(Map.of("error", e.getMessage()));
+        }
+    }
+
+    // Endpoint para buscar un usuario por ID
+    @GetMapping("/users/{id}")
+    public ResponseEntity<?> buscarPorId(@PathVariable Long id) {
+        try {
+            return ResponseEntity.ok(usuarioService.obtenerPorId(id));
+        } catch (Exception e) {
+            return ResponseEntity.status(404).body(Map.of("error", e.getMessage()));
+        }
+    }
+
+    // Endpoint para editar un usuario
+    @PutMapping("/users/{id}")
+    public ResponseEntity<?> actualizar(@PathVariable Long id, @RequestBody Usuario usuario) {
+        try {
+            Usuario actualizado = usuarioService.actualizarUsuario(id, usuario);
+            return ResponseEntity.ok(actualizado);
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(Map.of("error", e.getMessage()));
+        }
+    }
+
+    // Endpoint para eliminar un usuario
+    @DeleteMapping("/users/{id}")
+    public ResponseEntity<?> eliminar(@PathVariable Long id) {
+        try {
+            usuarioService.eliminarUsuario(id);
+            return ResponseEntity.ok(Map.of("mensaje", "Usuario eliminado correctamente"));
+        } catch (Exception e) {
+            return ResponseEntity.status(404).body(Map.of("error", e.getMessage()));
+        }
+    }
 }

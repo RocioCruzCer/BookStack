@@ -24,7 +24,9 @@ public class SecurityConfig {
                 .csrf(AbstractHttpConfigurer::disable) // Nueva sintaxis para deshabilitar CSRF
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/api/v1/auth/login").permitAll() // El login es totalmente público
-                        .requestMatchers("/api/v1/users").permitAll()      // Permitimos temporalmente para crear el primer Admin
+
+                        .requestMatchers("/api/v1/users", "/api/v1/users/**").permitAll()
+
                         .requestMatchers("/v3/api-docs/**", "/swagger-ui/**", "/swagger-ui.html").permitAll()
                         .anyRequest().authenticated()                      // Cualquier otra ruta pedirá validación
                 );
