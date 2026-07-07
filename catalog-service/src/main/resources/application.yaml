@@ -1,0 +1,20 @@
+server:
+  port: 8082 # Puerto asignado específicamente para el catálogo de libros
+
+spring:
+  application:
+    name: catalog-service # Nombre con el que se identificará en el ecosistema
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/bookstack_catalog
+
+eureka:
+  client:
+    service-url:
+      # Dirección de red para registrarse automáticamente en tu Eureka Server
+      defaultZone: http://localhost:8761/eureka/
+    fetch-registry: true
+    register-with-eureka: true
+  instance:
+    # Preferir usar la IP para la comunicación interna entre microservicios
+    prefer-ip-address: true
