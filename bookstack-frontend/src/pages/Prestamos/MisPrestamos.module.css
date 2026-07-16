@@ -1,0 +1,192 @@
+.container {
+  width: 100%;
+}
+
+.pageTitle {
+  font-family: var(--font-titulos, sans-serif);
+  color: var(--color-borgona, #800020);
+  margin: 0 0 5px 0;
+  font-size: 2em;
+}
+
+.subtitle {
+  color: #666;
+  margin-bottom: 35px;
+  font-size: 1.1em;
+}
+
+.sectionTitle {
+  font-family: var(--font-titulos, sans-serif);
+  color: var(--color-cafe, #4e342e);
+  font-size: 1.3em;
+  margin-bottom: 20px;
+}
+
+/* =========================================
+   GRID DE TARJETAS (PRÉSTAMOS ACTIVOS)
+========================================= */
+.cardsGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+  gap: 25px;
+  margin-bottom: 45px;
+}
+
+@media (max-width: 450px) {
+  .cardsGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.loanCard {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  display: flex;
+  overflow: hidden;
+  border: 1px solid #eaeaea;
+  border-left: 5px solid var(--color-oro-viejo, #b8860b);
+}
+
+.miniCover {
+  width: 80px;
+  background-color: #fdfae6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2em;
+  border-right: 1px solid #f1ebd9;
+}
+
+.loanDetails {
+  flex: 1;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.bookTitle {
+  margin: 0 0 4px 0;
+  font-size: 1.1em;
+  color: #111;
+}
+
+.bookAuthor {
+  margin: 0 0 15px 0;
+  color: #666;
+  font-size: 0.9em;
+}
+
+.datesGroup {
+  font-size: 0.88em;
+  color: #444;
+  margin-bottom: 15px;
+  background-color: #fafafa;
+  padding: 10px;
+  border-radius: 6px;
+}
+
+.datesGroup p {
+  margin: 4px 0;
+}
+
+.textBorgona {
+  color: var(--color-borgona, #800020);
+  font-weight: bold;
+}
+
+.cardFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: auto;
+}
+
+/* Botón e insignias */
+.btnRenovar {
+  background-color: transparent;
+  border: 1px solid var(--color-borgona, #800020);
+  color: var(--color-borgona, #800020);
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 0.85em;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btnRenovar:hover {
+  background-color: var(--color-borgona, #800020);
+  color: white;
+}
+
+.badgeInfo {
+  background-color: #e3f2fd;
+  color: #0d47a1;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.8em;
+  font-weight: bold;
+}
+
+.badgeAlerta {
+  background-color: #ffebee;
+  color: #c62828;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.8em;
+  font-weight: bold;
+  animation: parpadeo 2s infinite;
+}
+
+/* =========================================
+   TABLA DE HISTORIAL
+========================================= */
+.historySection {
+  margin-top: 20px;
+}
+
+.tableCard {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.06);
+  overflow: hidden;
+  border: 1px solid #eee;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th {
+  background-color: #f8f9fa;
+  padding: 14px 20px;
+  text-align: left;
+  color: #333;
+  font-weight: bold;
+  font-size: 0.9em;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.table td {
+  padding: 14px 20px;
+  border-bottom: 1px solid #eee;
+  color: #555;
+  font-size: 0.95em;
+}
+
+.badgeDevuelto {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.85em;
+  font-weight: bold;
+}
+
+@keyframes parpadeo {
+  0% { opacity: 1; }
+  50% { opacity: 0.6; }
+  100% { opacity: 1; }
+}

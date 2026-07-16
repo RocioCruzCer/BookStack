@@ -1,0 +1,130 @@
+/* =========================================
+   CABECERA Y CONTROLES
+========================================= */
+.headerContainer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.pageTitle {
+  font-family: var(--font-titulos, sans-serif);
+  color: var(--color-borgona, #800020);
+  margin: 0;
+}
+
+.btnAdd {
+  background-color: var(--color-borgona, #800020);
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: opacity 0.2s;
+}
+
+.btnAdd:hover {
+  opacity: 0.9;
+}
+
+.controlsContainer {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 30px;
+  flex-wrap: wrap;
+}
+
+.searchInput {
+  flex: 1;
+  min-width: 200px;
+  padding: 12px 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1em;
+}
+
+.filterSelect {
+  padding: 12px 15px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  background-color: white;
+  font-size: 1em;
+  color: #333;
+}
+
+/* =========================================
+   TABLA DE PRÉSTAMOS
+========================================= */
+.tableCard {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th {
+  background-color: #f8f9fa;
+  padding: 15px;
+  text-align: left;
+  color: #333;
+  font-weight: bold;
+  border-bottom: 2px solid #eaeaea;
+}
+
+.table td {
+  padding: 15px;
+  border-bottom: 1px solid #eee;
+  color: #555;
+}
+
+/* =========================================
+   ETIQUETAS (BADGES) Y BOTONES
+========================================= */
+.badge {
+  padding: 5px 12px;
+  border-radius: 12px;
+  font-size: 0.85em;
+  font-weight: bold;
+  display: inline-block;
+  text-align: center;
+}
+
+.badgeActivo {
+  background-color: #e3f2fd;
+  color: #1565c0;
+}
+
+.badgeDevuelto {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+}
+
+.badgeVencido {
+  background-color: #ffebee;
+  color: #c62828;
+}
+
+.btnAction {
+  padding: 6px 12px;
+  border: 1px solid var(--color-oro-viejo, #b8860b);
+  background: transparent;
+  color: var(--color-cafe, #4e342e);
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: all 0.2s;
+}
+
+.btnAction:hover {
+  background-color: var(--color-oro-viejo, #b8860b);
+  color: white;
+}

@@ -1,0 +1,28 @@
+/* src/index.css */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Source+Sans+Pro:wght@400;600&display=swap');
+
+:root {
+  /* Tu paleta de colores de la Biblioteca Francesa */
+  --color-borgona: #5B1E2D;
+  --color-crema: #F8F3E8;
+  --color-oro-viejo: #C2A15C;
+  --color-cafe: #4A3426;
+  --color-blanco-hueso: #FAF8F4;
+
+  /* Tipografías */
+  --font-titulos: 'Playfair Display', serif; /* Letra elegante para títulos */
+  --font-textos: 'Source Sans Pro', sans-serif; /* Letra limpia para leer */
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-crema);
+  color: var(--color-cafe);
+  font-family: var(--font-textos);
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-titulos);
+  font-weight: 600;
+}
