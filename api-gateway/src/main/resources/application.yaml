@@ -8,8 +8,6 @@ spring:
     gateway:
       discovery:
         locator:
-          enabled: true # Activa el enrutamiento dinámico automático con Eureka
-          lower-case-service-id: true # Permite usar nombres en minúsculas para las rutas
 
 eureka:
   client:
