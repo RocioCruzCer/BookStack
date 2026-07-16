@@ -1,5 +1,5 @@
 // src/services/authService.js
-const API_URL = '/api/v1';
+const API_URL = 'http://localhost:8081/api/v1';
 
 export const login = async (credenciales) => {
   const response = await fetch(`${API_URL}/auth/login`, {
