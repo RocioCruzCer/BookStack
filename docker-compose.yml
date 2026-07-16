@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  postgres-db:
+    image: postgres:16-alpine
+    container_name: bookstack-postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: bookstack_admin
+      POSTGRES_PASSWORD: securepassword123
+      POSTGRES_DB: bookstack_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:

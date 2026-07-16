@@ -1,0 +1,131 @@
+/* src/pages/Login.module.css */
+
+.loginContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-color: var(--color-crema);
+}
+
+.loginCard {
+  background-color: var(--color-blanco-hueso);
+  padding: 40px 50px;
+  border-radius: 8px;
+  box-shadow: 0 10px 30px rgba(74, 52, 38, 0.15); /* Sombra tono café */
+  width: 100%;
+  max-width: 350px;
+  border-top: 6px solid var(--color-borgona); /* Franja elegante arriba */
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.title {
+  color: var(--color-borgona);
+  font-size: 28px;
+  margin: 0 0 10px 0;
+  letter-spacing: 1px;
+}
+
+.subtitle {
+  color: var(--color-oro-viejo);
+  font-size: 14px;
+  font-style: italic;
+  margin: 0;
+  border-bottom: 1px solid var(--color-oro-viejo);
+  padding-bottom: 15px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 20px;
+}
+
+.formGroup label {
+  font-weight: 600;
+  font-size: 14px;
+  margin-bottom: 8px;
+  color: var(--color-cafe);
+}
+
+.input {
+  width: 100%;
+  box-sizing: border-box; /* Asegura que el padding no desborde el ancho */
+  padding: 12px;
+  border: 1px solid #d1c8b8;
+  border-radius: 4px;
+  font-size: 15px;
+  background-color: #fff;
+  font-family: var(--font-textos);
+  transition: all 0.3s ease;
+}
+
+.input:focus {
+  outline: none;
+  border-color: var(--color-oro-viejo);
+  box-shadow: 0 0 0 2px rgba(194, 161, 92, 0.2); /* Resplandor dorado al hacer clic */
+}
+
+/* === CLASES PARA EL CAMPO DE CONTRASEÑA === */
+.passwordWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.passwordWrapper .input {
+  padding-right: 75px; /* Espacio para que el texto no se encime con el botón */
+}
+
+.toggleButton {
+  position: absolute;
+  right: 10px;
+  background: none;
+  border: none;
+  color: var(--color-oro-viejo);
+  font-family: var(--font-textos);
+  font-weight: 600;
+  font-size: 13px;
+  cursor: pointer;
+  padding: 5px;
+  transition: color 0.2s ease;
+}
+
+.toggleButton:hover {
+  color: var(--color-borgona);
+}
+
+/* === BOTÓN DE SUBMIT Y ERRORES === */
+.button {
+  width: 100%;
+  background-color: var(--color-borgona);
+  color: var(--color-crema);
+  border: none;
+  padding: 14px;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: var(--font-textos);
+  transition: background-color 0.3s ease;
+  margin-top: 10px;
+}
+
+.button:hover {
+  background-color: #431520; /* Borgoña más oscuro al pasar el mouse */
+}
+
+.error {
+  background-color: #f8d7da;
+  color: #721c24;
+  padding: 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  text-align: center;
+  margin-top: 15px;
+  border-left: 4px solid #f5c6cb;
+}
