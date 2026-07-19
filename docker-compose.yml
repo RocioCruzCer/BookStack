@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  # Base de datos para el user-service de Chio
+  postgres:
+    image: postgres:15-alpine
+    container_name: bookstack-postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: "123456"
+      POSTGRES_DB: BookStackDB
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  # Base de datos para TU catalog-service
+  mongodb:
+    image: mongo:latest
+    container_name: bookstack-mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  # TU FRONTEND (React / Vite)
+  frontend:
+    build: ./bookstack-frontend
+    container_name: bookstack-frontend
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./bookstack-frontend:/app
+      - /app/node_modules
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+    # Esto asegura que el frontend inicie después de las bases de datos
+    depends_on:
+      - postgres
+      - mongodb
+
+volumes:
+  postgres_data:
+  mongo_data:

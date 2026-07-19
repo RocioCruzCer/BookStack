@@ -5,6 +5,11 @@ export default function Dashboard() {
   const [esAdmin, setEsAdmin] = useState(false);
   const [nombreUsuario, setNombreUsuario] = useState('Usuario');
 
+  // NUEVO ESTADO: Guardará el total real de libros
+  const [totalLibros, setTotalLibros] = useState(0);
+
+  const API_URL = 'http://localhost:8082/api/books';
+
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
@@ -25,13 +30,29 @@ export default function Dashboard() {
         console.error("Error al decodificar el token en el dashboard", error);
       }
     }
+
+    // NUEVA FUNCIÓN: Obtener la cantidad de libros desde la API
+    const cargarTotalLibros = () => {
+      fetch(API_URL)
+          .then((res) => {
+            if (!res.ok) throw new Error('Error al conectar con la API de libros');
+            return res.json();
+          })
+          .then((data) => {
+            // Asumiendo que la API devuelve un arreglo de libros
+            setTotalLibros(data.length);
+          })
+          .catch((err) => console.error("Error cargando total de libros:", err));
+    };
+
+    cargarTotalLibros();
   }, []);
 
-  // --- DATOS ESTÁTICOS PARA ADMINISTRADOR ---
+  // --- DATOS PARA ADMINISTRADOR ---
   const statsAdmin = {
-    totalLibros: 156,
-    usuariosActivos: 32,
-    prestamosPendientes: 12
+    totalLibros: totalLibros, // ¡Ahora es dinámico!
+    usuariosActivos: 32,      // Sigue estático hasta que conectes la API de usuarios
+    prestamosPendientes: 12   // Sigue estático hasta que conectes la API de préstamos
   };
 
   const actividadGlobal = [
@@ -64,69 +85,69 @@ export default function Dashboard() {
   };
 
   return (
-    <div>
-      <h1 className={styles.pageTitle}>
-        {esAdmin ? 'Panel de Administración' : `¡Hola, ${nombreUsuario}!`}
-      </h1>
-      <p className={styles.subtitle}>
-        {esAdmin
-          ? 'Bienvenido al sistema de control global de BookStack. Aquí tienes el estado de la biblioteca.'
-          : 'Bienvenido a tu rincón de lectura personal. Este es el resumen de tus préstamos.'}
-      </p>
+      <div>
+        <h1 className={styles.pageTitle}>
+          {esAdmin ? 'Panel de Administración' : `¡Hola, ${nombreUsuario}!`}
+        </h1>
+        <p className={styles.subtitle}>
+          {esAdmin
+              ? 'Bienvenido al sistema de control global de BookStack. Aquí tienes el estado de la biblioteca.'
+              : 'Bienvenido a tu rincón de lectura personal. Este es el resumen de tus préstamos.'}
+        </p>
 
-      {/* =========================================
+        {/* =========================================
          TARJETAS DE RESUMEN (KPIs CONDICIONALES)
       ========================================= */}
-      {esAdmin ? (
-        /* VISTA DE RESUMEN PARA ADMIN */
-        <div className={styles.kpiGrid}>
-          <div className={`${styles.kpiCard} ${styles.borderOro}`}>
-            <h3 className={styles.kpiLabel}>Total de Libros</h3>
-            <p className={styles.kpiValue}>{statsAdmin.totalLibros}</p>
-          </div>
+        {esAdmin ? (
+            /* VISTA DE RESUMEN PARA ADMIN */
+            <div className={styles.kpiGrid}>
+              <div className={`${styles.kpiCard} ${styles.borderOro}`}>
+                <h3 className={styles.kpiLabel}>Total de Libros</h3>
+                <p className={styles.kpiValue}>{statsAdmin.totalLibros}</p>
+              </div>
 
-          <div className={`${styles.kpiCard} ${styles.borderBorgona}`}>
-            <h3 className={styles.kpiLabel}>Usuarios Registrados</h3>
-            <p className={styles.kpiValue}>{statsAdmin.usuariosActivos}</p>
-          </div>
+              <div className={`${styles.kpiCard} ${styles.borderBorgona}`}>
+                <h3 className={styles.kpiLabel}>Usuarios Registrados</h3>
+                <p className={styles.kpiValue}>{statsAdmin.usuariosActivos}</p>
+              </div>
 
-          <div className={`${styles.kpiCard} ${styles.borderVerde}`}>
-            <h3 className={styles.kpiLabel}>Préstamos Activos</h3>
-            <p className={styles.kpiValue}>{statsAdmin.prestamosPendientes}</p>
-          </div>
-        </div>
-      ) : (
-        /* VISTA DE RESUMEN PARA LECTOR */
-        <div className={styles.kpiGrid}>
-          <div className={`${styles.kpiCard} ${styles.borderVerde}`}>
-            <h3 className={styles.kpiLabel}>Mis Préstamos Activos</h3>
-            <p className={styles.kpiValue}>{statsLector.prestamosVigentes}</p>
-          </div>
+              <div className={`${styles.kpiCard} ${styles.borderVerde}`}>
+                <h3 className={styles.kpiLabel}>Préstamos Activos</h3>
+                <p className={styles.kpiValue}>{statsAdmin.prestamosPendientes}</p>
+              </div>
+            </div>
+        ) : (
+            /* VISTA DE RESUMEN PARA LECTOR */
+            <div className={styles.kpiGrid}>
+              <div className={`${styles.kpiCard} ${styles.borderVerde}`}>
+                <h3 className={styles.kpiLabel}>Mis Préstamos Activos</h3>
+                <p className={styles.kpiValue}>{statsLector.prestamosVigentes}</p>
+              </div>
 
-          <div className={`${styles.kpiCard} ${styles.borderOro}`}>
-            <h3 className={styles.kpiLabel}>Libros Leídos</h3>
-            <p className={styles.kpiValue}>{statsLector.misLibrosLeidos}</p>
-          </div>
+              <div className={`${styles.kpiCard} ${styles.borderOro}`}>
+                <h3 className={styles.kpiLabel}>Libros Leídos</h3>
+                <p className={styles.kpiValue}>{statsLector.misLibrosLeidos}</p>
+              </div>
 
-          <div className={`${styles.kpiCard} ${styles.borderBorgona}`}>
-            <h3 className={styles.kpiLabel}>Multas / Retrasos</h3>
-            <p className={styles.kpiValue}>{statsLector.penalizaciones}</p>
-          </div>
-        </div>
-      )}
+              <div className={`${styles.kpiCard} ${styles.borderBorgona}`}>
+                <h3 className={styles.kpiLabel}>Multas / Retrasos</h3>
+                <p className={styles.kpiValue}>{statsLector.penalizaciones}</p>
+              </div>
+            </div>
+        )}
 
-      {/* =========================================
+        {/* =========================================
          TABLAS DINÁMICAS SEGÚN EL ROL
       ========================================= */}
-      <div className={styles.tableCard}>
-        <div className={styles.tableHeader}>
-          <h3 className={styles.sectionTitle}>
-            {esAdmin ? 'Actividad Reciente del Sistema' : 'Historial de mis Préstamos'}
-          </h3>
-        </div>
+        <div className={styles.tableCard}>
+          <div className={styles.tableHeader}>
+            <h3 className={styles.sectionTitle}>
+              {esAdmin ? 'Actividad Reciente del Sistema' : 'Historial de mis Préstamos'}
+            </h3>
+          </div>
 
-        <table className={styles.table}>
-          <thead>
+          <table className={styles.table}>
+            <thead>
             <tr>
               <th>Usuario</th>
               <th>Acción</th>
@@ -134,25 +155,24 @@ export default function Dashboard() {
               <th>Fecha</th>
               <th>Estado</th>
             </tr>
-          </thead>
-          <tbody>
+            </thead>
+            <tbody>
             {(esAdmin ? actividadGlobal : misPrestamos).map((actividad) => (
-              <tr key={actividad.id}>
-                <td><strong>{actividad.usuario}</strong></td>
-                <td>{actividad.accion}</td>
-                <td>{actividad.detalle}</td>
-                <td>{actividad.fecha}</td>
-                <td>
+                <tr key={actividad.id}>
+                  <td><strong>{actividad.usuario}</strong></td>
+                  <td>{actividad.accion}</td>
+                  <td>{actividad.detalle}</td>
+                  <td>{actividad.fecha}</td>
+                  <td>
                   <span className={getBadgeClass(actividad.estado)}>
                     {actividad.estado}
                   </span>
-                </td>
-              </tr>
+                  </td>
+                </tr>
             ))}
-          </tbody>
-        </table>
+            </tbody>
+          </table>
+        </div>
       </div>
-
-    </div>
   );
 }
