@@ -1,0 +1,266 @@
+.layout {
+  display: flex;
+  height: 100vh;
+  overflow: hidden;
+  background-color: var(--color-blanco-hueso);
+}
+
+/* Modificado de 250px a 300px para mayor comodidad visual */
+.sidebar {
+  width: 300px;
+  background-color: var(--color-crema);
+  color: var(--color-cafe);
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #d1c8b8;
+  transition: width 0.3s;
+  box-shadow: 2px 0 10px rgba(74, 52, 38, 0.05);
+}
+
+.sidebarHeader {
+  padding: 25px 20px;
+  text-align: center;
+  border-bottom: 1px solid #d1c8b8;
+  margin-bottom: 10px;
+}
+
+.sidebarHeader h2 {
+  margin: 0;
+  color: var(--color-borgona);
+  font-size: 20px;
+}
+
+.menuList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.menuItem {
+  padding: 15px 25px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 15px;
+  transition: all 0.2s ease;
+  border-right: 4px solid transparent;
+}
+
+.menuItem:hover {
+  background-color: rgba(194, 161, 92, 0.1);
+  color: var(--color-borgona);
+}
+
+.menuItemActive {
+  background-color: rgba(91, 30, 45, 0.05);
+  color: var(--color-borgona);
+  border-right: 4px solid var(--color-borgona);
+}
+
+.mainContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.topbar {
+  background-color: var(--color-borgona);
+  color: var(--color-crema);
+  padding: 15px 25px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+}
+
+.brandGroup {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.menuToggle {
+  background: none;
+  border: none;
+  color: var(--color-crema);
+  font-size: 24px;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.menuToggle:hover {
+  color: var(--color-oro-viejo);
+}
+
+.brandTitle {
+  margin: 0;
+  color: var(--color-oro-viejo);
+  letter-spacing: 2px;
+}
+
+.logoutBtn {
+  background-color: transparent;
+  color: var(--color-oro-viejo);
+  border: 1px solid var(--color-oro-viejo);
+  padding: 8px 20px;
+  border-radius: 4px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.logoutBtn:hover {
+  background-color: var(--color-oro-viejo);
+  color: var(--color-borgona);
+}
+
+.workspace {
+  padding: 40px;
+  overflow-y: auto;
+  flex: 1;
+}
+
+/* =========================================
+   PERFIL INTEGRADO EN EL SIDEBAR (CONECTADO A API)
+========================================= */
+.sidebarProfile {
+  padding: 30px 20px;
+  text-align: center;
+  border-bottom: 1px solid #d1c8b8;
+  background-color: rgba(74, 52, 38, 0.02);
+}
+
+.profileAvatar {
+  width: 70px;
+  height: 70px;
+  background-color: var(--color-borgona, #800020);
+  color: white;
+  font-size: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  margin: 0 auto 12px auto;
+  text-transform: uppercase;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+  font-weight: bold;
+}
+
+.profileName {
+  margin: 0 0 2px 0;
+  color: var(--color-cafe, #4e342e);
+  font-size: 1.15em;
+  font-weight: 700;
+}
+
+.profileUsername {
+  margin: 0 0 14px 0;
+  color: #888;
+  font-size: 0.9em;
+}
+
+.profileBadgeAdmin {
+  display: inline-block;
+  font-size: 0.8em;
+  padding: 4px 14px;
+  border-radius: 12px;
+  background-color: #fdf5e6;
+  border: 1px solid var(--color-oro-viejo, #b8860b);
+  color: var(--color-cafe, #4e342e);
+  font-weight: bold;
+}
+
+.profileBadgeUser {
+  display: inline-block;
+  font-size: 0.8em;
+  padding: 4px 14px;
+  border-radius: 12px;
+  background-color: #e2f0d9;
+  border: 1px solid #70ad47;
+  color: #385723;
+  font-weight: bold;
+}
+
+/* =========================================
+   MODAL DE CERRAR SESIÓN
+========================================= */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(3px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.modalCard {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  text-align: center;
+  max-width: 400px;
+  width: 90%;
+  animation: modalEntrada 0.3s ease-out;
+  border-top: 5px solid #a94442;
+}
+
+.modalTitle {
+  color: var(--color-borgona, #800020);
+  margin: 0 0 10px 0;
+  font-family: var(--font-titulos, sans-serif);
+  font-size: 1.5em;
+}
+
+.modalText {
+  color: #666;
+  margin-bottom: 25px;
+  font-size: 1.1em;
+}
+
+.modalActions {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.btnCancel {
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  background: white;
+  color: #555;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+.btnCancel:hover {
+  background: #f5f5f5;
+}
+
+.btnConfirm {
+  padding: 10px 20px;
+  border: none;
+  background: #a94442;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background 0.2s;
+}
+
+.btnConfirm:hover {
+  background: #8a3634;
+}
+
+@keyframes modalEntrada {
+  from { opacity: 0; transform: translateY(-30px); }
+  to { opacity: 1; transform: translateY(0); }
+}
